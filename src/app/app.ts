@@ -1,75 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {} from '@angular/common';
-import {HttpClient} from '@angular/common/http';
-import {catchError, of} from 'rxjs';
-import { environment } from './environment';
+import {Component, inject, OnInit} from '@angular/core';
+import { MxNav } from './lib/mx/mx-nav/mx-nav';
+import { Bridge } from './service/bridge/bridge';
+import{Action} from './shared/action/action';
+import { ActionType } from './lib/type/action.type';
+import { RouterOutlet } from '@angular/router';
+import { Footer } from './shared/footer/footer';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [MxNav, RouterOutlet,Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  isAuthenticated: boolean = false;
-  userName: string = '';
-  messages: string[] = [];
-
-  constructor(private http: HttpClient) {
+  private bridge: Bridge = inject(Bridge);
+  constructor() {
+    this.bridge.setPortal(Action,{fragments:[{name: 'Home', url: '/home'}, {name: 'About', url: '/about'}, {name: 'Contact', url: '/contact'}], activeLink: {name: 'Home', url: '/home'}} as ActionType);
   }
-
-  ngOnInit(): void {
-    this.getUserInfo();
-    this.getMessages();
-  }
-
-  login(): void {
-    // The Backend is configured to trigger login when unauthenticated
-    window.location.href = environment.backendBaseUrl;
-  }
-
-  logout(): void {
-    this.http.post('/logout', null)
-      .pipe(catchError((error) => {
-        console.error(error);
-        return of(null);
-      }))
-      .subscribe(() => {
-        this.isAuthenticated = false;
-        this.userName = '';
-        this.messages = [];
-      });
-  }
-
-  getUserInfo(): void {
-    this.http.get<any>('/userinfo')
-      .pipe(catchError((error) => {
-        console.error(error);
-        return of(null);
-      }))
-      .subscribe((userInfo) => {
-        if (userInfo) {
-          this.isAuthenticated = true;
-          this.userName = userInfo.sub;
-        }
-      });
-  }
-
-  authorizeMessages(): void {
-    // Trigger the Backend to perform the authorization_code grant flow.
-    // After authorization is complete, the Backend will redirect back to this app.
-    window.location.href = environment.backendBaseUrl + "/oauth2/authorization/messaging-client-authorization-code";
-  }
-
-  getMessages(): void {
-    this.http.get<string[]>('/messages')
-      .pipe(catchError((error) => {
-        console.error(error);
-        return of([]);
-      }))
-      .subscribe((messages) => {
-        this.messages = messages;
-      });
+  ngOnInit() {
   }
 }
