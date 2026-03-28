@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { MenuBridge } from '../../service/menu-bridge/menu-bridge';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-landing',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MxNav } from './lib/mx/mx-nav/mx-nav';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from './shared/footer/footer';
+import { Footer } from './component/footer/footer';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,6 @@ import { Footer } from './shared/footer/footer';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  constructor() {
-    
-  }
+  constructor() {}
   ngOnInit() {}
 }

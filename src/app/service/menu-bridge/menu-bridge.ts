@@ -1,6 +1,6 @@
 import { Injectable, Injector, signal, Type } from '@angular/core';
 import { ComponentPortal, Portal } from '@angular/cdk/portal';
-import { PORTAL_DATA } from '../../lib/type/portal-data.token';
+import { PORTAL_DATA } from '../../type/portal-data.token';
 @Injectable({
   providedIn: 'root',
 })
