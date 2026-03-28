@@ -1,0 +1,31 @@
+:host {
+  width: 100%;
+   
+}
+.toolbar-theme{
+  background: var(--mat-sys-primary-container);
+}
+.fixed-t-0 {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+.mt-md{
+  margin-top: 5em;
+}
+.radius-0{
+  border-radius: 0;
+}
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+.main{
+  background-color: var(--mat-bg-surface);
+}

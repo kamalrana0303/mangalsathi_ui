@@ -1,0 +1,11 @@
+<mat-nav-list>
+  @for (link of fragments(); track link) {
+    <a
+      mat-list-item
+      [activated]="activeLink().url === link.url"
+      href="{{ link.url }}"
+      (click)="action(link)"
+      >{{ link.name }}</a
+    >
+  }
+</mat-nav-list>

@@ -1,0 +1,13 @@
+:host{
+    background: var(--mat-sys-primary-container);
+}
+.footer-theme{
+    background: var(--mat-bg-surface);
+}
+.border-top{
+  border-top: solid 1px var(--mat-sys-outline-variant);
+}
+.f1 , .f2 , .f3{
+    min-height: 30px;
+}
+

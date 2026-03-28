@@ -1,0 +1,23 @@
+<mat-toolbar class="fixed-t-0 w-full toolbar-theme">
+  @if (menuBridge$()) {
+    <button matIconButton (click)="drawer.toggle()">
+      <mat-icon svgIcon="menu"></mat-icon>
+    </button>
+  }
+</mat-toolbar>
+<mat-drawer-container color="primary" class="w-full h-full">
+  <mat-drawer
+    #drawer
+    class="h-full radius-0 overflow-hidden"
+    [mode]="mode()"
+  >
+  <div class="mt-md">
+     <ng-template [cdkPortalOutlet]="menuBridge$()"></ng-template>
+  </div>
+  </mat-drawer>
+  <mat-drawer-content class="h-full w-full">
+    <main class="mt-md main">
+      <ng-content></ng-content>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
